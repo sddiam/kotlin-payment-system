@@ -1,0 +1,123 @@
+# Kotlin Payment System - Cursor Rules
+
+## Project Structure
+- Follow standard Kotlin/Spring Boot project structure
+- Use package-by-feature approach
+- Keep related files close together
+- Maximum file length: 300 lines
+- Maximum function length: 50 lines
+
+## Naming Conventions
+- Classes: PascalCase
+- Functions: camelCase
+- Variables: camelCase
+- Constants: UPPER_SNAKE_CASE
+- Packages: lowercase
+- Test classes: PascalCase with 'Test' suffix
+- Test functions: should_do_something_when_something format
+
+## Code Style
+- Use 4 spaces for indentation
+- Maximum line length: 120 characters
+- Use trailing commas in multi-line parameter lists
+- Use trailing commas in multi-line collection literals
+- Use trailing commas in multi-line enum entries
+- Use trailing commas in multi-line function arguments
+
+## Documentation
+- Document all public APIs
+- Use KDoc format for documentation
+- Include @param, @return, and @throws tags where applicable
+- Document complex business logic with comments
+- Keep comments up to date with code changes
+
+## Testing
+- Write tests for all business logic
+- Use descriptive test names
+- Follow AAA pattern (Arrange, Act, Assert)
+- Mock external dependencies
+- Aim for 85%+ code coverage
+
+## Error Handling
+- Use custom exceptions for business logic errors
+- Include meaningful error messages
+- Log all exceptions with appropriate level
+- Handle checked exceptions appropriately
+- Use sealed classes for error types
+
+## Security
+- Never log sensitive information
+- Use parameterized queries
+- Validate all input
+- Follow OWASP security guidelines
+- Use secure password hashing
+
+## Performance
+- Use appropriate data structures
+- Optimize database queries
+- Use connection pooling
+- Implement caching where appropriate
+- Monitor memory usage
+
+## Git Workflow
+- Use feature branches
+- Write meaningful commit messages
+- Keep commits atomic
+- Review code before merging
+- Update documentation with changes
+
+## API Design
+- Use RESTful principles
+- Version all APIs
+- Use appropriate HTTP methods
+- Return proper HTTP status codes
+- Document all endpoints
+
+## Dependencies
+- Keep dependencies up to date
+- Use specific versions
+- Document dependency purposes
+- Minimize external dependencies
+- Review security advisories
+
+## Code Review Guidelines
+- Review for functionality
+- Review for security
+- Review for performance
+- Review for maintainability
+- Review for test coverage
+
+## Build and Deployment
+- Use Maven for build management
+- Configure CI/CD pipeline
+- Use environment-specific configurations
+- Document deployment process
+- Monitor application health
+
+## Logging
+- Use appropriate log levels
+- Include context in log messages
+- Use structured logging
+- Rotate log files
+- Monitor log patterns
+
+## Database
+- Use JPA annotations consistently
+- Optimize entity relationships
+- Use appropriate indexes
+- Follow naming conventions
+- Document schema changes
+
+## Configuration
+- Use application.yml for configuration
+- Use environment variables for secrets
+- Document configuration options
+- Validate configuration on startup
+- Use type-safe configuration
+
+## Monitoring
+- Implement health checks
+- Monitor application metrics
+- Set up alerts
+- Track performance metrics
+- Monitor error rates 
