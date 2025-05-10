@@ -1,0 +1,51 @@
+server:
+  port: ${SERVER_PORT:8080}
+  tomcat:
+    max-threads: 200
+    min-spare-threads: 20
+    max-connections: 10000
+    accept-count: 100
+
+spring:
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:payment_prod}?useSSL=true&serverTimezone=UTC
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        connection:
+          provider_disables_autocommit: true
+
+logging:
+  level:
+    root: WARN
+    com.payment.api: INFO
+    org.springframework.security: WARN
+  file:
+    name: /var/log/payment-system/api.log
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+springdoc:
+  swagger-ui:
+    enabled: false
+
+# 운영 환경에서는 더 엄격한 rate limit 설정
+rate-limit:
+  ip:
+    capacity: 100
+    refill-tokens: 100
+    refill-duration: 60
+  user:
+    capacity: 1000
+    refill-tokens: 1000
+    refill-duration: 60
+
+# 운영 환경에서는 더 긴 토큰 만료 시간 설정
+jwt:
+  expiration: 86400000 # 24 hours 

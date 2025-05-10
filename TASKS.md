@@ -2,107 +2,256 @@
 
 ## 1. 프로젝트 초기 설정
 - [ ] Spring Boot 프로젝트 생성
+  - [ ] Spring Initializr를 통한 프로젝트 생성
+  - [ ] 기본 프로젝트 구조 확인
+  - [ ] Git 저장소 초기화
 - [ ] Maven 의존성 설정
-  - [ ] Spring Boot Starter Web
-  - [ ] Spring Boot Starter Data JPA
-  - [ ] Spring Boot Starter Security
-  - [ ] Spring Boot Starter Validation
-  - [ ] SpringDoc OpenAPI (Swagger)
-  - [ ] JUnit, MockK
-  - [ ] H2 Database
-  - [ ] MySQL Connector
+  - [ ] Spring Boot Starter Web 설정
+  - [ ] Spring Boot Starter Data JPA 설정
+  - [ ] Spring Boot Starter Security 설정
+  - [ ] Spring Boot Starter Validation 설정
+  - [ ] SpringDoc OpenAPI (Swagger) 설정
+  - [ ] JUnit, MockK 설정
+  - [ ] H2 Database 설정
+  - [ ] MySQL Connector 설정
 - [ ] 기본 프로젝트 구조 설정
-  - [ ] 패키지 구조 설정
-  - [ ] 설정 파일 분리 (application.yml)
+  - [ ] 패키지 구조 설정 (controller, service, repository, domain, config, exception)
+  - [ ] 공통 응답 객체 생성
+  - [ ] 예외 처리 기본 구조 설정
+  - [ ] 설정 파일 분리 (application.yml, application-dev.yml, application-prod.yml)
 
 ## 2. 데이터베이스 설계 및 구현
 - [ ] 엔티티 설계
   - [ ] User 엔티티
+    - [ ] 기본 필드 정의 (id, email, password, name, phone)
+    - [ ] JPA 어노테이션 설정
+    - [ ] 유효성 검증 어노테이션 추가
   - [ ] Transaction 엔티티
+    - [ ] 기본 필드 정의 (id, amount, type, status, timestamp)
+    - [ ] User 엔티티와의 관계 설정
+    - [ ] JPA 어노테이션 설정
   - [ ] Balance 엔티티
+    - [ ] 기본 필드 정의 (id, amount, lastUpdated)
+    - [ ] User 엔티티와의 관계 설정
+    - [ ] JPA 어노테이션 설정
   - [ ] AuditLog 엔티티
+    - [ ] 기본 필드 정의 (id, action, details, timestamp)
+    - [ ] JPA 어노테이션 설정
 - [ ] JPA Repository 구현
+  - [ ] UserRepository 구현
+  - [ ] TransactionRepository 구현
+  - [ ] BalanceRepository 구현
+  - [ ] AuditLogRepository 구현
 - [ ] 데이터베이스 마이그레이션 설정
+  - [ ] Flyway 설정
+  - [ ] 초기 스키마 마이그레이션 파일 작성
+  - [ ] 테스트 데이터 마이그레이션 파일 작성
 
 ## 3. 보안 구현
 - [ ] JWT 기반 인증 구현
-  - [ ] JWT 토큰 생성/검증
+  - [ ] JWT 토큰 생성/검증 유틸리티 클래스 구현
   - [ ] Security 설정
+    - [ ] SecurityConfig 클래스 구현
+    - [ ] JWT 필터 구현
+    - [ ] 인증/인가 규칙 설정
+  - [ ] 로그인/회원가입 엔드포인트 구현
 - [ ] 비밀번호 암호화 (bcrypt)
+  - [ ] PasswordEncoder 설정
+  - [ ] 비밀번호 암호화/검증 로직 구현
 - [ ] API 엔드포인트 보안 설정
+  - [ ] 각 엔드포인트별 접근 권한 설정
+  - [ ] 인증된 사용자만 접근 가능하도록 설정
 - [ ] Rate Limiting 구현
+  - [ ] Rate Limiter 설정
+  - [ ] IP 기반 요청 제한 구현
+  - [ ] 사용자별 요청 제한 구현
 
 ## 4. API 엔드포인트 구현
 ### 4.1 사용자 관리
 - [ ] 사용자 생성 API (POST /api/v1/users)
+  - [ ] 요청/응답 DTO 구현
+  - [ ] 유효성 검증 로직 구현
+  - [ ] 서비스 레이어 구현
+  - [ ] 컨트롤러 구현
 - [ ] 사용자 정보 조회 API (GET /api/v1/users/{userId})
+  - [ ] 응답 DTO 구현
+  - [ ] 서비스 레이어 구현
+  - [ ] 컨트롤러 구현
 - [ ] 사용자 정보 수정 API (PUT /api/v1/users/{userId})
+  - [ ] 요청/응답 DTO 구현
+  - [ ] 유효성 검증 로직 구현
+  - [ ] 서비스 레이어 구현
+  - [ ] 컨트롤러 구현
 
 ### 4.2 잔액 관리
 - [ ] 잔액 조회 API (GET /api/v1/users/{userId}/balance)
+  - [ ] 응답 DTO 구현
+  - [ ] 서비스 레이어 구현
+  - [ ] 컨트롤러 구현
 - [ ] 잔액 충전 API (POST /api/v1/users/{userId}/topup)
+  - [ ] 요청/응답 DTO 구현
+  - [ ] 유효성 검증 로직 구현
+  - [ ] 서비스 레이어 구현
+  - [ ] 컨트롤러 구현
 
 ### 4.3 결제 처리
 - [ ] 결제 처리 API (POST /api/v1/payments)
+  - [ ] 요청/응답 DTO 구현
+  - [ ] 유효성 검증 로직 구현
+  - [ ] 서비스 레이어 구현
+  - [ ] 컨트롤러 구현
 - [ ] 결제 상태 조회 API (GET /api/v1/payments/{paymentId})
+  - [ ] 응답 DTO 구현
+  - [ ] 서비스 레이어 구현
+  - [ ] 컨트롤러 구현
 
 ### 4.4 거래 내역
 - [ ] 거래 내역 조회 API (GET /api/v1/users/{userId}/transactions)
-- [ ] 페이지네이션 구현
+  - [ ] 요청/응답 DTO 구현
+  - [ ] 페이지네이션 구현
+  - [ ] 서비스 레이어 구현
+  - [ ] 컨트롤러 구현
 
 ## 5. 비즈니스 로직 구현
 - [ ] 트랜잭션 처리 로직
   - [ ] 동시성 제어
+    - [ ] 낙관적 락 구현
+    - [ ] 비관적 락 구현
   - [ ] 트랜잭션 원자성 보장
+    - [ ] @Transactional 설정
+    - [ ] 롤백 정책 설정
 - [ ] 잔액 검증 로직
+  - [ ] 잔액 부족 검증
+  - [ ] 최대 거래 금액 검증
+  - [ ] 일일 거래 한도 검증
 - [ ] 에러 처리 및 예외 처리
+  - [ ] 커스텀 예외 클래스 구현
+  - [ ] 글로벌 예외 핸들러 구현
+  - [ ] 에러 응답 포맷 정의
 - [ ] 로깅 구현
+  - [ ] 로깅 설정
+  - [ ] 주요 비즈니스 로직 로깅
+  - [ ] 에러 로깅
 
 ## 6. 테스트 구현
 ### 6.1 단위 테스트
 - [ ] 서비스 레이어 테스트
+  - [ ] UserService 테스트
+  - [ ] TransactionService 테스트
+  - [ ] BalanceService 테스트
 - [ ] 컨트롤러 레이어 테스트
+  - [ ] UserController 테스트
+  - [ ] TransactionController 테스트
+  - [ ] BalanceController 테스트
 - [ ] 리포지토리 레이어 테스트
+  - [ ] UserRepository 테스트
+  - [ ] TransactionRepository 테스트
+  - [ ] BalanceRepository 테스트
 
 ### 6.2 통합 테스트
 - [ ] API 엔드포인트 테스트
+  - [ ] 사용자 관리 API 테스트
+  - [ ] 잔액 관리 API 테스트
+  - [ ] 결제 처리 API 테스트
 - [ ] 데이터베이스 통합 테스트
+  - [ ] 트랜잭션 처리 테스트
+  - [ ] 데이터 정합성 테스트
 - [ ] 트랜잭션 흐름 테스트
+  - [ ] 정상 흐름 테스트
+  - [ ] 예외 상황 테스트
 
 ### 6.3 성능 테스트
 - [ ] 부하 테스트
+  - [ ] JMeter 스크립트 작성
+  - [ ] 동시 사용자 테스트
+  - [ ] 응답 시간 측정
 - [ ] 동시성 테스트
+  - [ ] 동시 결제 요청 테스트
+  - [ ] 동시 잔액 조회 테스트
 - [ ] 응답 시간 테스트
+  - [ ] 각 API 엔드포인트 응답 시간 측정
+  - [ ] 병목 구간 분석
 
 ## 7. API 문서화
 - [ ] Swagger/OpenAPI 설정
+  - [ ] 기본 설정
+  - [ ] 보안 설정
 - [ ] API 엔드포인트 문서화
+  - [ ] 각 엔드포인트 설명 추가
+  - [ ] 요청/응답 예제 추가
 - [ ] 요청/응답 예제 작성
+  - [ ] 성공 케이스 예제
+  - [ ] 실패 케이스 예제
 - [ ] 에러 코드 문서화
+  - [ ] 에러 코드 목록 작성
+  - [ ] 에러 메시지 설명 추가
 
 ## 8. 배포 준비
 - [ ] 운영 환경 설정
+  - [ ] 프로덕션 설정 파일 작성
+  - [ ] 환경 변수 설정
 - [ ] 로깅 및 모니터링 설정
+  - [ ] 로그 수집 설정
+  - [ ] 모니터링 도구 연동
 - [ ] 배포 스크립트 작성
+  - [ ] 빌드 스크립트
+  - [ ] 배포 스크립트
 - [ ] CI/CD 파이프라인 구성
+  - [ ] GitHub Actions 워크플로우 작성
+  - [ ] 자동 테스트 설정
+  - [ ] 자동 배포 설정
 
 ## 9. 성능 최적화
 - [ ] 데이터베이스 쿼리 최적화
+  - [ ] 인덱스 최적화
+  - [ ] N+1 문제 해결
+  - [ ] 쿼리 실행 계획 분석
 - [ ] 캐싱 구현
+  - [ ] Redis 설정
+  - [ ] 캐시 전략 수립
+  - [ ] 캐시 적용
 - [ ] 응답 시간 개선
+  - [ ] 비동기 처리 적용
+  - [ ] 배치 처리 구현
 - [ ] 리소스 사용량 최적화
+  - [ ] 메모리 사용량 최적화
+  - [ ] 스레드 풀 설정 최적화
 
 ## 10. 문서화
 - [ ] README 업데이트
+  - [ ] 프로젝트 설명 보완
+  - [ ] 설치 방법 추가
+  - [ ] 사용 방법 추가
 - [ ] API 사용 가이드 작성
+  - [ ] API 목록 및 설명
+  - [ ] 인증 방법 설명
+  - [ ] 에러 처리 방법 설명
 - [ ] 배포 가이드 작성
+  - [ ] 환경 설정 방법
+  - [ ] 배포 절차
+  - [ ] 모니터링 방법
 - [ ] 개발 환경 설정 가이드 작성
+  - [ ] 개발 환경 구성 방법
+  - [ ] 테스트 실행 방법
+  - [ ] 디버깅 방법
 
 ## 우선순위 및 일정
 1. **1주차**: 프로젝트 초기 설정 및 데이터베이스 설계
+   - Spring Boot 프로젝트 생성 및 기본 설정
+   - 엔티티 설계 및 구현
+   - 기본 보안 설정
 2. **2주차**: 보안 구현 및 기본 API 엔드포인트 구현
+   - JWT 인증 구현
+   - 사용자 관리 API 구현
+   - 잔액 관리 API 구현
 3. **3주차**: 비즈니스 로직 구현 및 테스트
+   - 결제 처리 로직 구현
+   - 테스트 코드 작성
+   - 성능 테스트
 4. **4주차**: 문서화, 성능 최적화 및 배포 준비
+   - API 문서화
+   - 성능 최적화
+   - 배포 환경 구성
 
 ## 성공 기준
 - [ ] API 응답 시간 200ms 이하 달성

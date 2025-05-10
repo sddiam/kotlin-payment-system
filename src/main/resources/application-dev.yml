@@ -1,0 +1,39 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/payment_dev?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: dev_user
+    password: dev_password
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+logging:
+  level:
+    root: DEBUG
+    com.payment.api: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+springdoc:
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+
+# 개발 환경에서는 더 짧은 토큰 만료 시간 설정
+jwt:
+  expiration: 3600000 # 1 hour
+
+# 개발 환경에서는 더 낮은 rate limit 설정
+rate-limit:
+  ip:
+    capacity: 1000
+    refill-tokens: 1000
+    refill-duration: 60
+  user:
+    capacity: 10000
+    refill-tokens: 10000
+    refill-duration: 60 
