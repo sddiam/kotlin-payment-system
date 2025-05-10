@@ -1,189 +1,189 @@
-# Payment System API - Product Requirements Document
+# 결제 시스템 API - 제품 요구사항 문서
 
-## 1. Overview
-### 1.1 Purpose
-This document outlines the requirements for developing a simple payment system API using Kotlin and Spring Boot. The system will enable users to create accounts, manage balances, process payments, and view transaction history.
+## 1. 개요
+### 1.1 목적
+이 문서는 Kotlin과 Spring Boot를 사용하여 간단한 결제 시스템 API를 개발하기 위한 요구사항을 설명합니다. 이 시스템은 사용자 계정 생성, 잔액 관리, 결제 처리, 거래 내역 조회 기능을 제공합니다.
 
-### 1.2 Scope
-The payment system will provide RESTful API endpoints for:
-- User account management
-- Balance operations
-- Payment processing
-- Transaction history
-- API documentation
+### 1.2 범위
+결제 시스템은 다음과 같은 RESTful API 엔드포인트를 제공합니다:
+- 사용자 계정 관리
+- 잔액 관리
+- 결제 처리
+- 거래 내역
+- API 문서화
 
-### 1.3 Target Users
-- Frontend developers integrating with the payment system
-- System administrators managing the payment infrastructure
-- End users making payments through the system
+### 1.3 대상 사용자
+- 결제 시스템을 통합하는 프론트엔드 개발자
+- 결제 인프라를 관리하는 시스템 관리자
+- 시스템을 통해 결제를 수행하는 최종 사용자
 
-## 2. Functional Requirements
+## 2. 기능적 요구사항
 
-### 2.1 User Management
-#### 2.1.1 Account Creation
-- **Endpoint**: POST /api/v1/users
-- **Input**:
-  - Email (required, unique)
-  - Password (required, min 8 characters)
-  - Name (required)
-  - Phone number (optional)
-- **Output**:
-  - User ID
-  - Account status
-  - Creation timestamp
+### 2.1 사용자 관리
+#### 2.1.1 계정 생성
+- **엔드포인트**: POST /api/v1/users
+- **입력**:
+  - 이메일 (필수, 고유값)
+  - 비밀번호 (필수, 최소 8자)
+  - 이름 (필수)
+  - 전화번호 (선택)
+- **출력**:
+  - 사용자 ID
+  - 계정 상태
+  - 생성 시간
 
-#### 2.1.2 Account Information
-- **Endpoint**: GET /api/v1/users/{userId}
-- **Output**:
-  - User details
-  - Current balance
-  - Account status
+#### 2.1.2 계정 정보
+- **엔드포인트**: GET /api/v1/users/{userId}
+- **출력**:
+  - 사용자 상세 정보
+  - 현재 잔액
+  - 계정 상태
 
-### 2.2 Balance Management
-#### 2.2.1 Balance Check
-- **Endpoint**: GET /api/v1/users/{userId}/balance
-- **Output**:
-  - Current balance
-  - Last updated timestamp
+### 2.2 잔액 관리
+#### 2.2.1 잔액 조회
+- **엔드포인트**: GET /api/v1/users/{userId}/balance
+- **출력**:
+  - 현재 잔액
+  - 마지막 업데이트 시간
 
-#### 2.2.2 Balance Top-up
-- **Endpoint**: POST /api/v1/users/{userId}/topup
-- **Input**:
-  - Amount (required, positive number)
-  - Payment method
-- **Output**:
-  - Transaction ID
-  - New balance
-  - Transaction status
+#### 2.2.2 잔액 충전
+- **엔드포인트**: POST /api/v1/users/{userId}/topup
+- **입력**:
+  - 금액 (필수, 양수)
+  - 결제 방법
+- **출력**:
+  - 거래 ID
+  - 새로운 잔액
+  - 거래 상태
 
-### 2.3 Payment Processing
-#### 2.3.1 Make Payment
-- **Endpoint**: POST /api/v1/payments
-- **Input**:
-  - Sender ID
-  - Recipient ID
-  - Amount
-  - Description (optional)
-- **Output**:
-  - Transaction ID
-  - Payment status
-  - Timestamp
+### 2.3 결제 처리
+#### 2.3.1 결제 실행
+- **엔드포인트**: POST /api/v1/payments
+- **입력**:
+  - 송신자 ID
+  - 수신자 ID
+  - 금액
+  - 설명 (선택)
+- **출력**:
+  - 거래 ID
+  - 결제 상태
+  - 시간
 
-#### 2.3.2 Payment Status
-- **Endpoint**: GET /api/v1/payments/{paymentId}
-- **Output**:
-  - Payment details
-  - Status
-  - Timestamps
+#### 2.3.2 결제 상태
+- **엔드포인트**: GET /api/v1/payments/{paymentId}
+- **출력**:
+  - 결제 상세 정보
+  - 상태
+  - 시간 정보
 
-### 2.4 Transaction History
-#### 2.4.1 View Transactions
-- **Endpoint**: GET /api/v1/users/{userId}/transactions
-- **Query Parameters**:
-  - Start date (optional)
-  - End date (optional)
-  - Transaction type (optional)
-  - Page number
-  - Page size
-- **Output**:
-  - List of transactions
-  - Pagination details
+### 2.4 거래 내역
+#### 2.4.1 거래 내역 조회
+- **엔드포인트**: GET /api/v1/users/{userId}/transactions
+- **쿼리 파라미터**:
+  - 시작 날짜 (선택)
+  - 종료 날짜 (선택)
+  - 거래 유형 (선택)
+  - 페이지 번호
+  - 페이지 크기
+- **출력**:
+  - 거래 목록
+  - 페이지네이션 정보
 
-## 3. Non-Functional Requirements
+## 3. 비기능적 요구사항
 
-### 3.1 Performance
-- API response time: < 200ms for 95% of requests
-- Support for concurrent transactions
-- Handle minimum 1000 transactions per second
+### 3.1 성능
+- API 응답 시간: 95%의 요청에 대해 200ms 이하
+- 동시 거래 지원
+- 초당 최소 1000건의 거래 처리
 
-### 3.2 Security
-- All endpoints must use HTTPS
-- Implement JWT-based authentication
-- Password encryption using bcrypt
-- Input validation and sanitization
-- Rate limiting to prevent abuse
+### 3.2 보안
+- 모든 엔드포인트는 HTTPS 사용
+- JWT 기반 인증 구현
+- bcrypt를 사용한 비밀번호 암호화
+- 입력값 검증 및 살균
+- 악용 방지를 위한 요청 제한
 
-### 3.3 Reliability
-- 99.9% uptime
-- Transaction atomicity
-- Data consistency
-- Error handling and logging
+### 3.3 신뢰성
+- 99.9% 가동률
+- 거래 원자성
+- 데이터 일관성
+- 오류 처리 및 로깅
 
-### 3.4 Scalability
-- Horizontal scaling capability
-- Database sharding support
-- Caching mechanism for frequently accessed data
+### 3.4 확장성
+- 수평적 확장 가능
+- 데이터베이스 샤딩 지원
+- 자주 접근하는 데이터의 캐싱 메커니즘
 
-## 4. Technical Requirements
+## 4. 기술적 요구사항
 
-### 4.1 Technology Stack
-- **Backend**: Kotlin, Spring Boot
-- **Database**: H2 (development), MySQL (production)
+### 4.1 기술 스택
+- **백엔드**: Kotlin, Spring Boot
+- **데이터베이스**: H2 (개발), MySQL (운영)
 - **ORM**: JPA/Hibernate
-- **Testing**: JUnit, MockK
-- **Documentation**: Swagger/OpenAPI
-- **Build Tool**: Maven
+- **테스트**: JUnit, MockK
+- **문서화**: Swagger/OpenAPI
+- **빌드 도구**: Maven
 
-### 4.2 Database Schema
-- Users table
-- Transactions table
-- Balances table
-- Audit logs table
+### 4.2 데이터베이스 스키마
+- 사용자 테이블
+- 거래 테이블
+- 잔액 테이블
+- 감사 로그 테이블
 
-### 4.3 API Documentation
-- Swagger/OpenAPI specification
-- API versioning
-- Error codes and messages
-- Request/response examples
+### 4.3 API 문서화
+- Swagger/OpenAPI 명세
+- API 버전 관리
+- 오류 코드 및 메시지
+- 요청/응답 예제
 
-## 5. Testing Requirements
+## 5. 테스트 요구사항
 
-### 5.1 Unit Testing
-- Minimum 85% code coverage
-- Test all business logic
-- Mock external dependencies
+### 5.1 단위 테스트
+- 최소 85% 코드 커버리지
+- 모든 비즈니스 로직 테스트
+- 외부 의존성 모킹
 
-### 5.2 Integration Testing
-- API endpoint testing
-- Database integration tests
-- Transaction flow testing
+### 5.2 통합 테스트
+- API 엔드포인트 테스트
+- 데이터베이스 통합 테스트
+- 거래 흐름 테스트
 
-### 5.3 Performance Testing
-- Load testing
-- Stress testing
-- Concurrent transaction testing
+### 5.3 성능 테스트
+- 부하 테스트
+- 스트레스 테스트
+- 동시 거래 테스트
 
-## 6. Deployment Requirements
+## 6. 배포 요구사항
 
-### 6.1 Environment Setup
-- Development environment
-- Staging environment
-- Production environment
+### 6.1 환경 설정
+- 개발 환경
+- 스테이징 환경
+- 운영 환경
 
-### 6.2 Monitoring
-- Application metrics
-- Error tracking
-- Performance monitoring
-- Transaction monitoring
+### 6.2 모니터링
+- 애플리케이션 메트릭
+- 오류 추적
+- 성능 모니터링
+- 거래 모니터링
 
-## 7. Timeline and Milestones
+## 7. 일정 및 마일스톤
 
-### 7.1 Development Phases
-1. **Phase 1**: Basic infrastructure setup (1 week)
-2. **Phase 2**: Core functionality implementation (2 weeks)
-3. **Phase 3**: Testing and optimization (1 week)
-4. **Phase 4**: Documentation and deployment (1 week)
+### 7.1 개발 단계
+1. **1단계**: 기본 인프라 구축 (1주)
+2. **2단계**: 핵심 기능 구현 (2주)
+3. **3단계**: 테스트 및 최적화 (1주)
+4. **4단계**: 문서화 및 배포 (1주)
 
-### 7.2 Deliverables
-- Source code
-- API documentation
-- Test reports
-- Deployment guide
-- User guide
+### 7.2 산출물
+- 소스 코드
+- API 문서
+- 테스트 보고서
+- 배포 가이드
+- 사용자 가이드
 
-## 8. Success Metrics
-- API response time < 200ms
-- 99.9% uptime
-- 85%+ test coverage
-- Zero critical security vulnerabilities
-- Successful handling of concurrent transactions 
+## 8. 성공 지표
+- API 응답 시간 < 200ms
+- 99.9% 가동률
+- 85% 이상의 테스트 커버리지
+- 중요 보안 취약점 제로
+- 동시 거래 처리 성공 
